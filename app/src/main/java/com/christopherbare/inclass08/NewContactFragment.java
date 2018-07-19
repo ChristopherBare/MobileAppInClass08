@@ -71,6 +71,8 @@ public class NewContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        NewContactFragment fragment = (NewContactFragment) getFragmentManager().findFragmentById(R.id.newContactFragment);
+
         return inflater.inflate(R.layout.fragment_new_contact, container, false);
     }
 

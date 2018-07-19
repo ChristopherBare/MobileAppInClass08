@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NewContactFragment fragment = (NewContactFragment) getFragmentManager().findFragmentById(R.layout.fragment_new_contact);
+                NewContactFragment fragment = (NewContactFragment) getFragmentManager().findFragmentById(R.id.newContactFragment);
+
             }
         });
 
