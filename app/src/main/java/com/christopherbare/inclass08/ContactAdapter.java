@@ -57,7 +57,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         URL url = classLoader.getResource("app/src/main/res/drawable/");
 //        Log.d("demo", "Path: " + classLoader.getResource("app/src/main/res/drawable"));
-        viewHolder.contact_image.setImageResource(contact.getPicID());
+        if (contact.getPicID() == 0) viewHolder.contact_image.setImageResource(contact.getPicID());
         viewHolder.contact_name.setText(contact.getName());
         viewHolder.contact_id.setText(contact.getId());
         viewHolder.contact_id.setVisibility(View.GONE);
@@ -69,7 +69,6 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         return convertView;
     }
 
-    //Class that stores the views so that findViewById does not need to be called repeatedly
     private static class ViewHolder {
         ImageView contact_image;
         TextView contact_name;

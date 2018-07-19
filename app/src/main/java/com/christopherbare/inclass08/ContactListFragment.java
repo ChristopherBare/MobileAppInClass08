@@ -45,7 +45,7 @@ public class ContactListFragment extends Fragment {
         contacts.add(new Contact("Christopher Bare", "cbare3@uncc.edu", "(828) 781-4547", "SIS", "ID", R.drawable.select_avatar));
 
         ContactAdapter adapter = new ContactAdapter(getActivity(), R.layout.contact_item, contacts);
-        listView = view.findViewById(R.id.listView);
+        listView = view.findViewById(R.id.listView_contacts);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
