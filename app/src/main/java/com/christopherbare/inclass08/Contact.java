@@ -1,22 +1,21 @@
 package com.christopherbare.inclass08;
 
 public class Contact {
-    String name, email, phone, dept;
+    String name, email, phone, dept, id;
     int picID;
-    long id;
+
     public String key;
 
     public Contact() {
     }
 
-    public Contact(String name, String email, String phone, String dept, long id) {
+    public Contact(String name, String email, String phone, String dept, String id, int picID) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.dept = dept;
         this.picID = picID;
         this.id = id;
-        this.key = key;
     }
 
     public String getName() {
@@ -59,11 +58,11 @@ public class Contact {
         this.picID = picID;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

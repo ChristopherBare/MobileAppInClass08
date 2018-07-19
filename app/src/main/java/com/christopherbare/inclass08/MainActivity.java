@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ContactListFragment.ContactListInterface, NewContactFragment.NewContactInterface, PickIconFragment.SelectIconInterface {
 
     Button button;
     ListView listView;
@@ -15,20 +15,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacts);
+        setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.buttonCreate);
-        listView = findViewById(R.id.listView);
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.main_view, new ContactListFragment(), "list_fragment")
+                .commit();
+    }
 
+    @Override
+    public void toNewContact() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_view, new NewContactFragment(), "new_contact_fragment")
+                .commit();
+    }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    @Override
+    public void toSelectIcon(Contact contact) {
 
+    }
 
-            }
-        });
-
+    @Override
+    public void backToNewContact(Contact contact) {
 
     }
 }

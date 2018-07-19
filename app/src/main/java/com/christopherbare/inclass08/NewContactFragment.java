@@ -8,50 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link NewContactFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link NewContactFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class NewContactFragment extends Fragment {
-    ImageView imageViewSelect;
-    EditText editTextName, editTextPhone, editTextEmail;
-    RadioGroup radioGroup;
-    int id;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+    private NewContactInterface mListener;
 
     public NewContactFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NewContactFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static NewContactFragment newInstance(String param1, String param2) {
         NewContactFragment fragment = new NewContactFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,35 +30,30 @@ public class NewContactFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        NewContactFragment fragment = (NewContactFragment) getFragmentManager().findFragmentById(R.id.newContactFragment);
+        View view = inflater.inflate(R.layout.fragment_new_contact, container, false);
 
-        return inflater.inflate(R.layout.fragment_new_contact, container, false);
+        ImageButton imageButton = view.findViewById(R.id.imageViewSelect);
+        imageButton.setImageResource(R.drawable.avatar_f_2);
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(Contact contact) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.toSelectIcon(contact);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof NewContactInterface) {
+            mListener = (NewContactInterface) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -100,18 +66,7 @@ public class NewContactFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public interface NewContactInterface {
+        void toSelectIcon(Contact contact);
     }
 }
